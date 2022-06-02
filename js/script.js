@@ -19,14 +19,16 @@ if (navigator.serviceWorker) {
 window.onload = function() {
   const params = new URLSearchParams(document.location.search)
 
-  // input
+  // input and process
   const radius = params.get('r')
-
-  // process
   const volume = (4 / 3) * Math.PI * Math.pow(radius, 3)
   const dimensions = "Radius: " + radius + " cm"
 
   // output
-  document.getElementById('dimensions').innerHTML = dimensions
-  document.getElementById('volume').innerHTML = 'Volume is: ' + volume.toFixed(2) + ' cm³'
+  if (radius > 0) {
+    document.getElementById('dimensions').innerHTML = dimensions
+    document.getElementById('volume').innerHTML = 'Volume is: ' + volume.toFixed(2) + ' cm³'
+  } else {
+    document.getElementById('volume').innerHTML = 'Volume is NaN.'
+  }
 }
